@@ -9,6 +9,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	</http:listener-config>
 	<flow name="github_testFlow" doc:id="33fa2e8a-be05-4795-bd7b-54e3b7ad1199" >
 		<http:listener doc:name="Listener" doc:id="b9ce9030-53ed-41a6-a378-30a9c535a37f" config-ref="HTTP_Listener_config" path="/test"/>
-		<set-payload value='#["--- move project code to repo ---"]' doc:name="Set Payload" doc:id="f62c9876-b569-4c59-a2ca-6676c979b39e" />
+		<set-payload value='#["--- - move project code to repo --- -"]' doc:name="Set Payload" doc:id="f62c9876-b569-4c59-a2ca-6676c979b39e" />
 	</flow>
 </mule>
