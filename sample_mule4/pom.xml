@@ -121,7 +121,7 @@
                             <format>html</format>
                         </formats>
                     </coverage>
-                    <runtimeVersion>4.1.2-hf1</runtimeVersion>
+                    <runtimeVersion>4.1.2</runtimeVersion>
                 </configuration>
             </plugin>
         </plugins>
