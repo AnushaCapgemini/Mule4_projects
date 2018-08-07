@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.mycompany</groupId>
+	<artifactId>sample-mule4</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>mule-application</packaging>
+	<name>sample-mule4</name>
+
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<app.runtime>4.1.2</app.runtime>
+		<mule.maven.plugin.version>3.1.2</mule.maven.plugin.version>
+	<munit.version>2.1.2</munit.version>
+	<username>devdeploy</username>
+	<password>Appdeploy@5</password>
+    </properties>
+
+	<profiles>
+		<!--prod profile-->
+		<profile>
+			<id>chdev</id>
+			<build>
+				<plugins>
+					<plugin>
+					<groupId>org.mule.tools.maven</groupId>
+					<artifactId>mule-maven-plugin</artifactId>
+					<version>3.1.2</version>
+					<extensions>true</extensions>
+
+					<configuration>
+						<cloudHubDeployment>
+								<uri>https://anypoint.mulesoft.com</uri>
+								<muleVersion>${app.runtime}</muleVersion>
+								<username>${username}</username>
+								<password>${password}</password>
+								<applicationName>mule4-sample</applicationName>
+								<environment>Dev</environment>
+								<workerType>Micro</workerType>
+								<properties>
+										<key>value</key>
+								</properties>
+						</cloudHubDeployment>
+					</configuration>
+					<executions>
+							<execution>
+									<id>deploy</id>
+									<phase>deploy</phase>
+									<goals>
+											<goal>deploy</goal>
+									</goals>
+							</execution>
+					</executions>
+					</plugin>
+					</plugins>
+				<testResources>
+						<testResource>
+							<directory>src/test/munit</directory>
+						</testResource>
+					<testResource>
+							<directory>src/test/resources</directory>
+						</testResource>
+					</testResources>
+				</build>
+				<repositories>
+
+
+		          <repository>
+		            <id>anypoint-exchange</id>
+		            <name>Anypoint Exchange</name>
+		            <url>https://maven.anypoint.mulesoft.com/api/v1/maven</url>
+		            <layout>default</layout>
+		        </repository>
+		        <repository>
+		            <id>mulesoft-releases</id>
+		            <name>MuleSoft Releases Repository</name>
+		            <url>https://repository.mulesoft.org/releases/</url>
+		            <layout>default</layout>
+		        </repository>
+   			 </repositories>
+			<distributionManagement>
+					<repository>
+					<id>chdev</id>
+					<name>munit-demo</name>
+					<url>https://anypoint.mulesoft.com</url>
+					</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+				</configuration>
+			</plugin>
+		<plugin>
+                <groupId>com.mulesoft.munit.tools</groupId>
+                <artifactId>munit-maven-plugin</artifactId>
+                <version>${munit.version}</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                            <goal>coverage-report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <coverage>
+                        <runCoverage>true</runCoverage>
+                        <formats>
+                            <format>html</format>
+                        </formats>
+                    </coverage>
+                    <runtimeVersion>4.1.2-hf1</runtimeVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+	</build>
+
+	<dependencies>
+        <dependency>
+            <groupId>org.mule.connectors</groupId>
+            <artifactId>mule-http-connector</artifactId>
+            <version>1.2.1</version>
+            <classifier>mule-plugin</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.mule.connectors</groupId>
+            <artifactId>mule-sockets-connector</artifactId>
+            <version>1.1.1</version>
+            <classifier>mule-plugin</classifier>
+        </dependency>
+		<dependency>
+            <groupId>com.mulesoft.munit</groupId>
+            <artifactId>munit-runner</artifactId>
+            <version>2.1.2</version>
+            <classifier>mule-plugin</classifier>
+            <scope>test</scope>
+        </dependency>	<dependency>
+            <groupId>com.mulesoft.munit</groupId>
+            <artifactId>munit-tools</artifactId>
+            <version>2.1.2</version>
+            <classifier>mule-plugin</classifier>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+	<pluginRepositories>
+        <pluginRepository>
+            <id>mulesoft-releases</id>
+            <name>mulesoft release repository</name>
+            <layout>default</layout>
+            <url>https://repository.mulesoft.org/releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
