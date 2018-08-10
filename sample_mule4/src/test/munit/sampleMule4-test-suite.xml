@@ -8,12 +8,12 @@
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
 	<munit:config name="sampleMule4-test-suite.xml" />
-	<munit:test name="sampleMule4-test-suite-sampleMule4FlowTest" description="Test" doc:id="efbae479-448b-48d0-970b-8c61c27472e1" >
+	<munit:test name="sampleMule4-test-suite-sampleMule4FlowTest" description="Test" doc:id="7fe44b35-de64-486f-a13a-9efbdc467e27" >
 		<munit:execution >
-			<flow-ref doc:name="sampleMule4Flow" doc:id="b236d4fa-7f87-4206-bd46-b15172f5b4b6" name="sampleMule4Flow"/>
+			<flow-ref doc:name="Flow-ref to sampleMule4Flow" doc:id="806d1d33-0913-4adf-9f34-23c138409556" name="sampleMule4Flow"/>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-that doc:name="Assert that" doc:id="268c9067-e0c3-4f64-86e0-5b8148b296f0" expression="Sample Mule4 project" is="#[payload]"/>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="18784fe2-b545-498c-b0b6-11bade4272d1" expression="#[payload]" is="#[MunitTools::equalTo('Sample Mule4 project')]" message="payload didn't match"/>
 		</munit:validation>
 	</munit:test>
 
