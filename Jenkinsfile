@@ -22,7 +22,7 @@ pipeline {
 		stage ('compile-package')
 		{
 		steps{
-		bat 'mvn package'
+		bat 'mvn -f Mule4_projects/sample_mule4/pom.xml clean install'
 		}
 		}
     }
