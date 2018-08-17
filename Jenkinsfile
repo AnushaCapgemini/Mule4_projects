@@ -16,7 +16,7 @@ pipeline {
 
         stage ('Git Checkout') {
             steps {
-                git 'https://github.com/AnushaCapgemini/Mule4_projects/tree/master/sample_mule4'
+                git 'https://github.com/AnushaCapgemini/Mule4_projects.git'
             }
         }
 		stage ('compile-package')
