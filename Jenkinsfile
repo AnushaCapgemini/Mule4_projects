@@ -21,7 +21,9 @@ pipeline {
         }
 		stage ('compile-package')
 		{
-		bat mvn package
+		steps{
+		bat 'mvn package'
+		}
 		}
     }
 }
