@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage ('Initialize') {
             steps {
-                bat '''
+                sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                 ''' 
@@ -22,7 +22,7 @@ pipeline {
 		stage ('compile-package')
 		{
 		steps{
-		bat 'mvn -f sample_mule4/pom.xml clean install -Pchdev deploy -DmuleDeploy -DskipTests -e'
+		sh 'mvn -f sample_mule4/pom.xml clean install -Pchdev deploy -DmuleDeploy -DskipTests -e'
 		}
 		}
     }
