@@ -1,4 +1,4 @@
-pipeline {
+-Dpipeline {
     agent any
     tools { 
         maven 'mvn 3.5.4' 
@@ -22,7 +22,7 @@ pipeline {
 		stage ('compile-package')
 		{
 		steps{
-		sh 'mvn -f sample_mule4/pom.xml clean install -Pchdev deploy -DmuleDeploy -e'
+		sh 'mvn -f sample_mule4/pom.xml clean install -Pchdev deploy -DmuleDeploy -DskipTests-e'
 		}
 		}
     }
