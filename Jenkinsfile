@@ -22,7 +22,7 @@ pipeline {
 		stage ('compile-package')
 		{
 		steps{
-		sh 'mvn -f sample_mule4/pom.xml clean install -Pchdev deploy -DmuleDeploy -DskipTests -e'
+		sh 'mvn -f sample_mule4/pom.xml clean install -Pchdev deploy -DmuleDeploy -e'
 		}
 		}
     }
